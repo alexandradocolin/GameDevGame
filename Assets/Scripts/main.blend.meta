@@ -1,0 +1,173 @@
+fileFormatVersion: 2
+guid: f6cbac12835f732449e485e2758b5515
+timeCreated: 1519499867
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Cube_005
+    100002: eye
+    100004: eyeInnerLeft
+    100006: eyeInnerRight
+    100008: eyeOuterLeft
+    100010: eyeOuterRight
+    100012: //RootNode
+    100014: scalp
+    100016: shirt
+    100018: shirt_MeshPart0
+    100020: shirt_MeshPart1
+    100022: shirt_MeshPart2
+    100024: shirt_MeshPart3
+    100026: shirt_MeshPart4
+    100028: shirt_MeshPart5
+    100030: shirt_MeshPart6
+    100032: shirt_MeshPart7
+    100034: shirt_MeshPart8
+    100036: shirt_MeshPart9
+    400000: Cube_005
+    400002: eye
+    400004: eyeInnerLeft
+    400006: eyeInnerRight
+    400008: eyeOuterLeft
+    400010: eyeOuterRight
+    400012: //RootNode
+    400014: scalp
+    400016: shirt
+    400018: shirt_MeshPart0
+    400020: shirt_MeshPart1
+    400022: shirt_MeshPart2
+    400024: shirt_MeshPart3
+    400026: shirt_MeshPart4
+    400028: shirt_MeshPart5
+    400030: shirt_MeshPart6
+    400032: shirt_MeshPart7
+    400034: shirt_MeshPart8
+    400036: shirt_MeshPart9
+    2300000: Cube_005
+    2300002: eye
+    2300004: eyeInnerLeft
+    2300006: eyeInnerRight
+    2300008: eyeOuterLeft
+    2300010: eyeOuterRight
+    2300012: scalp
+    2300014: shirt_MeshPart0
+    2300016: shirt_MeshPart1
+    2300018: shirt_MeshPart2
+    2300020: shirt_MeshPart3
+    2300022: shirt_MeshPart4
+    2300024: shirt_MeshPart5
+    2300026: shirt_MeshPart6
+    2300028: shirt_MeshPart7
+    2300030: shirt_MeshPart8
+    2300032: shirt_MeshPart9
+    3300000: Cube_005
+    3300002: eye
+    3300004: eyeInnerLeft
+    3300006: eyeInnerRight
+    3300008: eyeOuterLeft
+    3300010: eyeOuterRight
+    3300012: scalp
+    3300014: shirt_MeshPart0
+    3300016: shirt_MeshPart1
+    3300018: shirt_MeshPart2
+    3300020: shirt_MeshPart3
+    3300022: shirt_MeshPart4
+    3300024: shirt_MeshPart5
+    3300026: shirt_MeshPart6
+    3300028: shirt_MeshPart7
+    3300030: shirt_MeshPart8
+    3300032: shirt_MeshPart9
+    4300000: eyeInnerLeft
+    4300002: eyeOuterLeft
+    4300004: eyeInnerRight
+    4300006: eyeOuterRight
+    4300008: eye
+    4300010: scalp
+    4300012: Cube_005
+    4300014: shirt_MeshPart0
+    4300016: shirt_MeshPart1
+    4300018: shirt_MeshPart2
+    4300020: shirt_MeshPart3
+    4300022: shirt_MeshPart4
+    4300024: shirt_MeshPart5
+    4300026: shirt_MeshPart6
+    4300028: shirt_MeshPart7
+    4300030: shirt_MeshPart8
+    4300032: shirt_MeshPart9
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
