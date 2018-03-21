@@ -13,10 +13,10 @@ public class FillWallsWithCubes : MonoBehaviour {
         Vector3 rot = transform.localEulerAngles;
         if (rot.y == 0)
         {
-            for (int y1 = 0; y1 < 5; y1++)
+            for (int y1 = 0; y1 < 4; y1++)
             {
                 float x = transform.position.x;
-                for (int x1 = 0; x1 < 19; x1++)
+                for (int x1 = 0; x1 < 13; x1++)
                 {
                     Instantiate(brick, new Vector3(x, y, z), Quaternion.identity, transform);
                     Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
@@ -25,36 +25,18 @@ public class FillWallsWithCubes : MonoBehaviour {
                     float emission = Mathf.PingPong(Time.time, 1.0f);
                     Color finalColor = newColor * Mathf.LinearToGammaSpace(emission);
                     onj.material.color = finalColor;
-                    x += 5.0f;
+                    x += 15.0f;
                 }
-                y += 5.0f;
+                y += 15.0f;
             }
         }
-        if (rot.y == 90)
-        {
-            for (int y1 = 0; y1 < 5; y1++)
-            {
-                float x = transform.position.x;
-                for (int x1 = 0; x1 < 18; x1++)
-                {
-                    Instantiate(brick, transform.TransformDirection(new Vector3(x, y, z)), Quaternion.identity, transform);
-                    Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
-                    Renderer onj = transform.GetChild(transform.childCount - 1).GetComponent<MeshRenderer>();
-                    if (transform.GetChild(transform.childCount - 1).gameObject.AddComponent<BrickCollision>()) { Debug.Log("da ba"); }
-                    float emission = Mathf.PingPong(Time.time, 1.0f);
-                    Color finalColor = newColor * Mathf.LinearToGammaSpace(emission);
-                    onj.material.color = finalColor;
-                    x -= 5.0f;
-                }
-                y += 5.0f;
-            }
-        }
+        
         if (rot.y == 180)
         {
-            for (int y1 = 0; y1 < 5; y1++)
+            for (int y1 = 0; y1 < 4; y1++)
             {
                 float x = transform.position.x;
-                for (int x1 = 0; x1 < 18; x1++)
+                for (int x1 = 0; x1 < 13; x1++)
                 {
                     Instantiate(brick, new Vector3(x, y, z), Quaternion.identity, transform);
                     Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
@@ -63,28 +45,9 @@ public class FillWallsWithCubes : MonoBehaviour {
                     float emission = Mathf.PingPong(Time.time, 1.0f);
                     Color finalColor = newColor * Mathf.LinearToGammaSpace(emission);
                     onj.material.color = finalColor;
-                    x -= 5.0f;
+                    x -= 15.0f;
                 }
-                y += 5.0f;
-            }
-        }
-        if (rot.y == 270)
-        {
-            for (int y1 = 0; y1 < 5; y1++)
-            {
-                float x = transform.position.x;
-                for (int x1 = 0; x1 < 18; x1++)
-                {
-                    Instantiate(brick, transform.TransformDirection(new Vector3(x, y, -z)), Quaternion.identity, transform);
-                    Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
-                    Renderer onj = transform.GetChild(transform.childCount - 1).GetComponent<MeshRenderer>();
-                    if (transform.GetChild(transform.childCount - 1).gameObject.AddComponent<BrickCollision>()) { Debug.Log("da ba"); }
-                    float emission = Mathf.PingPong(Time.time, 1.0f);
-                    Color finalColor = newColor * Mathf.LinearToGammaSpace(emission);
-                    onj.material.color = finalColor;
-                    x += 5.0f;
-                }
-                y += 5.0f;
+                y += 15.0f;
             }
         }
     }
