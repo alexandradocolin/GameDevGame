@@ -208,7 +208,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heart: {fileID: 2800000, guid: c6b11a20b7db5b84cba95497113129b2, type: 3}
-  playerName: 
-  theOtherPlayer: {fileID: 0}
-  theOtherPlayerName: 
-  currentLives: 5

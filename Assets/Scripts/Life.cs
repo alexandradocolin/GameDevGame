@@ -10,9 +10,31 @@ public class Life : NetworkBehaviour
     public Texture heart;
 
     [SyncVar]
+    int levels_won = 0;
+
+    [SyncVar]
     int currentLives = maxLives;
 
     int other_player_lives = 0;
+
+    int gui_row_height = 25;
+    int gui_first_row_x = 185;
+
+    private GameObject get_other_player()
+    {
+        GameObject theOtherPlayer = null;
+        if( transform.gameObject.name == "Player 1" )
+        {
+            theOtherPlayer = GameObject.Find( "Player 2" );
+            //theOtherPlayerName = "Player 2";
+        }
+        else
+        {
+            theOtherPlayer = GameObject.Find( "Player 1" );
+            //theOtherPlayerName = "Player 1";
+        }
+        return theOtherPlayer;
+    }
 
     public void LoseLife()
     {
@@ -21,11 +43,20 @@ public class Life : NetworkBehaviour
             return;
         }
 
-        currentLives--;
-        if( currentLives <= 0 )
+        GameObject theOtherPlayer = get_other_player();
+
+        if( currentLives == 1 )
         {
-            currentLives = 0;
+            if( theOtherPlayer != null )
+            {
+                theOtherPlayer.GetComponent<Life>().levels_won++;
+            }
             Debug.Log( "Dead!" );
+        }
+
+        if( currentLives > 0 )
+        {
+            currentLives--;
         }
     }
 
@@ -36,9 +67,9 @@ public class Life : NetworkBehaviour
             return;
         }
 
-        string playerName = "Player missing";
+        string playerName = this.gameObject.name;
         string theOtherPlayerName = "Player missing";
-        GameObject theOtherPlayer = null;
+        GameObject theOtherPlayer = get_other_player();
 
         int heart_size = 20;
         GUIStyle left_align_style = new GUIStyle( GUI.skin.label );
@@ -50,18 +81,7 @@ public class Life : NetworkBehaviour
         right_align_style = new GUIStyle( left_align_style );
         right_align_style.alignment = TextAnchor.UpperRight;
 
-        if( transform.gameObject.name == "Player 1" )
-        {
-            playerName = "Player 1";
-            theOtherPlayer = GameObject.Find( "Player 2" );
-            //theOtherPlayerName = "Player 2";
-        }
-        else
-        {
-            playerName = "Player 2";
-            theOtherPlayer = GameObject.Find( "Player 1" );
-            //theOtherPlayerName = "Player 1";
-        }
+        
         if( theOtherPlayer == null )
             other_player_lives = -1;
         else
@@ -70,18 +90,25 @@ public class Life : NetworkBehaviour
             theOtherPlayerName = theOtherPlayer.name;
         }
 
-        GUI.Label( new Rect( 0, 185, Screen.width, heart.height ), playerName, left_align_style );
-        GUI.Label( new Rect( 0, 185, Screen.width, heart.height ), theOtherPlayerName, right_align_style );
+        GUI.Label( new Rect( 0, gui_first_row_x, Screen.width, heart.height ), playerName, left_align_style );
+        GUI.Label( new Rect( 0, gui_first_row_x, Screen.width, heart.height ), theOtherPlayerName, right_align_style );
+
+        GUI.Label( new Rect( 0, gui_first_row_x + gui_row_height * 2, Screen.width, heart.height ), levels_won + " levels won", left_align_style );
+        if( theOtherPlayer != null )
+        {
+            GUI.Label( new Rect( 0, gui_first_row_x + gui_row_height * 2, Screen.width, heart.height ), theOtherPlayer.GetComponent<Life>().levels_won + " levels won", right_align_style );
+        }
+
         if( currentLives != 0 && other_player_lives != 0 )
         {
             for( int i = 0; i < currentLives; i++ )
             {
-                var pos = new Rect( heart_size * i + 10, 210, heart_size, heart_size );
+                var pos = new Rect( heart_size * i + 10, gui_first_row_x+gui_row_height, heart_size, heart_size );
                 GUI.DrawTexture( pos, heart, ScaleMode.ScaleToFit );
             }
             for( int i = 0; i < other_player_lives; i++ )
             {
-                var pos = new Rect( Screen.width - maxLives * heart_size + heart_size * i - 10, 210, heart_size, heart_size );
+                var pos = new Rect( Screen.width - maxLives * heart_size + heart_size * i - 10, gui_first_row_x+gui_row_height, heart_size, heart_size );
                 GUI.DrawTexture( pos, heart, ScaleMode.ScaleToFit );
             }
         }
@@ -89,15 +116,15 @@ public class Life : NetworkBehaviour
         {
             if( other_player_lives == 0 )
             {
-                GUI.Label( new Rect( 0, 210, Screen.width, heart.height ), "You won!", left_align_style );
-                GUI.Label( new Rect( 0, 210, Screen.width, heart.height ), "You lost!", right_align_style );
+                GUI.Label( new Rect( 0, gui_first_row_x + gui_row_height, Screen.width, heart.height ), "You won!", left_align_style );
+                GUI.Label( new Rect( 0, gui_first_row_x + gui_row_height, Screen.width, heart.height ), "You lost!", right_align_style );
             }
             else
             {
                 if( currentLives == 0 )
                 {
-                    GUI.Label( new Rect( 0, 210, Screen.width, heart.height ), "You lost!", left_align_style );
-                    GUI.Label( new Rect( 0, 210, Screen.width, heart.height ), "You won!", right_align_style );
+                    GUI.Label( new Rect( 0, gui_first_row_x + gui_row_height, Screen.width, heart.height ), "You lost!", left_align_style );
+                    GUI.Label( new Rect( 0, gui_first_row_x + gui_row_height, Screen.width, heart.height ), "You won!", right_align_style );
                 }
             }
         }

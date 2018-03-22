@@ -65,7 +65,15 @@ public class FillWallsWithCubes : NetworkBehaviour
     [ClientRpc]
     void RpcUpdateBrick( GameObject go, Color new_color)
     {
-        go.GetComponent<MeshRenderer>().material.color = new_color;
+        if( go == null )
+        {
+            Debug.Log( "NULLLLL" );
+        }
+        else
+        {
+            go.GetComponent<MeshRenderer>().material.color = new_color;
+        }
+        
     }
 
     void UpdateBricks()
