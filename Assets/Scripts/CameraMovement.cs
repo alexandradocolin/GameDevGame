@@ -71,7 +71,7 @@ public class CameraMovement : MonoBehaviour
                 {
                     zoom_scale /= zoom_factor;
                 }
-            transform.localScale = new Vector3( 1, 1, zoom_scale );
+            transform.localScale = new Vector3( zoom_scale, 1, 1 );
         }
     }
 }
