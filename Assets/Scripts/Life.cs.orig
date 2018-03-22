@@ -5,19 +5,22 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class Life : NetworkBehaviour
 {
     public const int maxLives = 5;
     public Texture heart;
 
     [SyncVar]
+<<<<<<< origin/master/score_multiplayer
     int levels_won = 0;
 
     [SyncVar]
+    int currentLives = maxLives;
+=======
     public int currentLives = maxLives;
+>>>>>>> local
 
-    int other_player_lives = 0;
+    public int other_player_lives = 0;
 
     int gui_row_height = 25;
     int gui_first_row_x = 185;
@@ -92,8 +95,9 @@ public class Life : NetworkBehaviour
             theOtherPlayerName = theOtherPlayer.name;
         }
 
-        GUI.Label( new Rect( 10, 185, Screen.width, heart.height ), playerName, left_align_style );
-        GUI.Label( new Rect( -10, 185, Screen.width, heart.height ), theOtherPlayerName, right_align_style );
+<<<<<<< origin/master/score_multiplayer
+        GUI.Label( new Rect( 0, gui_first_row_x, Screen.width, heart.height ), playerName, left_align_style );
+        GUI.Label( new Rect( 0, gui_first_row_x, Screen.width, heart.height ), theOtherPlayerName, right_align_style );
 
         GUI.Label( new Rect( 0, gui_first_row_x + gui_row_height * 2, Screen.width, heart.height ), levels_won + " levels won", left_align_style );
         if( theOtherPlayer != null )
@@ -101,6 +105,10 @@ public class Life : NetworkBehaviour
             GUI.Label( new Rect( 0, gui_first_row_x + gui_row_height * 2, Screen.width, heart.height ), theOtherPlayer.GetComponent<Life>().levels_won + " levels won", right_align_style );
         }
 
+=======
+        GUI.Label( new Rect( 10, 185, Screen.width, heart.height ), playerName, left_align_style );
+        GUI.Label( new Rect( -10, 185, Screen.width, heart.height ), theOtherPlayerName, right_align_style );
+>>>>>>> local
         if( currentLives != 0 && other_player_lives != 0 )
         {
             for( int i = 0; i < currentLives; i++ )
@@ -118,15 +126,25 @@ public class Life : NetworkBehaviour
         {
             if( other_player_lives == 0 )
             {
+<<<<<<< origin/master/score_multiplayer
+                GUI.Label( new Rect( 0, gui_first_row_x + gui_row_height, Screen.width, heart.height ), "You won!", left_align_style );
+                GUI.Label( new Rect( 0, gui_first_row_x + gui_row_height, Screen.width, heart.height ), "You lost!", right_align_style );
+=======
                 GUI.Label( new Rect( 10, 210, Screen.width, heart.height ), "You won!", left_align_style );
                 GUI.Label( new Rect( -10, 210, Screen.width, heart.height ), "You lost!", right_align_style );
+>>>>>>> local
             }
             else
             {
                 if( currentLives == 0 )
                 {
+<<<<<<< origin/master/score_multiplayer
+                    GUI.Label( new Rect( 0, gui_first_row_x + gui_row_height, Screen.width, heart.height ), "You lost!", left_align_style );
+                    GUI.Label( new Rect( 0, gui_first_row_x + gui_row_height, Screen.width, heart.height ), "You won!", right_align_style );
+=======
                     GUI.Label( new Rect( 10, 210, Screen.width, heart.height ), "You lost!", left_align_style );
                     GUI.Label( new Rect( -10, 210, Screen.width, heart.height ), "You won!", right_align_style );
+>>>>>>> local
                 }
             }
         }
