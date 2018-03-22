@@ -10,6 +10,14 @@ public class PlayerMovement : NetworkBehaviour {
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.TransformDirection(Vector3.zero);
         rb.angularVelocity = Vector3.zero;
+        if (GameObject.Find("Player 1"))
+        {
+            transform.gameObject.name = "Player 2";
+        }
+        else
+        {
+            transform.gameObject.name = "Player 1";
+        }
     }
 
     public override void OnStartLocalPlayer()
