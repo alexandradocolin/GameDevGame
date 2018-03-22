@@ -20,11 +20,6 @@ public class CameraMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Camera cam = GetComponent<Camera>();
-        //if( !isLocalPlayer )
-        {
-            //do something with it's camera, so it's not accesible by our player
-        }
         y_value = 0f;
         other_than_y_value = 0f;
     }

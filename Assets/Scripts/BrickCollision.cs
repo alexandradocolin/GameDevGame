@@ -23,7 +23,7 @@ public class BrickCollision : NetworkBehaviour
     void OnCollisionEnter( Collision other )
     {
         //Destroy cube only if the ball has touched it
-        if( other.collider.gameObject.CompareTag( permitted_collider_tag ) )
+        //if( other.collider.gameObject.CompareTag( permitted_collider_tag ) )
         {
             try
             {
