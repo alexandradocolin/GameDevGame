@@ -1,71 +1,87 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class FillWallsWithCubes : MonoBehaviour {
-    public Transform brick;
-    public float timer = 0.0f;
+public class FillWallsWithCubes : NetworkBehaviour 
+{
+    public GameObject brick;
+    float timer = 0.0f;
+    public float wall_height = 30f;
+    public float wall_length = 200f;
 
     // Use this for initialization
-    void Start () {
-        float y = transform.localPosition.y;
-        float z = transform.localPosition.z;
-        Vector3 rot = transform.localEulerAngles;
-        if (rot.y == 0)
+    void Start () 
+    {
+        if( brick == null || brick.GetComponent<Renderer>() == null )
         {
-            for (int y1 = 0; y1 < 4; y1++)
-            {
-                float x = transform.position.x;
-                for (int x1 = 0; x1 < 13; x1++)
-                {
-                    Instantiate(brick, new Vector3(x, y, z), Quaternion.identity, transform);
-                    Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
-                    Renderer onj = transform.GetChild(transform.childCount - 1).GetComponent<MeshRenderer>();
-                    if(transform.GetChild(transform.childCount - 1).gameObject.AddComponent<BrickCollision>()) { Debug.Log("da ba"); }
-                    float emission = Mathf.PingPong(Time.time, 1.0f);
-                    Color finalColor = newColor * Mathf.LinearToGammaSpace(emission);
-                    onj.material.color = finalColor;
-                    x += 15.0f;
-                }
-                y += 15.0f;
-            }
+            Debug.LogError( "Brick prefab is null or it doesn't have a renderer component attached" );
+            return;
+        }
+        if( isServer )
+        {
+            InitializeBricks();
         }
         
-        if (rot.y == 180)
-        {
-            for (int y1 = 0; y1 < 4; y1++)
-            {
-                float x = transform.position.x;
-                for (int x1 = 0; x1 < 13; x1++)
-                {
-                    Instantiate(brick, new Vector3(x, y, z), Quaternion.identity, transform);
-                    Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
-                    Renderer onj = transform.GetChild(transform.childCount - 1).GetComponent<MeshRenderer>();
-                    if (transform.GetChild(transform.childCount - 1).gameObject.AddComponent<BrickCollision>()) { Debug.Log("da ba"); }
-                    float emission = Mathf.PingPong(Time.time, 1.0f);
-                    Color finalColor = newColor * Mathf.LinearToGammaSpace(emission);
-                    onj.material.color = finalColor;
-                    x -= 15.0f;
-                }
-                y += 15.0f;
-            }
-        }
     }
 	
 	// Update is called once per frame
-	void Update ()
+    void Update()
+    {
+        if( isServer )
+        {
+            UpdateBricks();
+        }
+    }
+
+    
+    void InitializeBricks()
+    {
+        float brick_height = brick.GetComponent<Renderer>().bounds.size.y;
+        float brick_width = brick.GetComponent<Renderer>().bounds.size.y;
+
+        for( float x = 0; x <= wall_length / 2 - brick_width; x += brick_width )
+        {
+            for( float y = 0; y <= wall_height - brick_height; y += brick_height )
+            {
+                foreach( float x_pos in new float[] { x + brick_width / 2, -x - brick_width / 2 } )
+                {
+                    GameObject this_brick = Instantiate( brick, new Vector3( x_pos, y, 0 ), Quaternion.identity );
+                    this_brick.transform.SetParent( this.transform, false );
+                    /*
+                    Color newColor = new Color( Random.value, Random.value, Random.value, 1.0f );
+                    Renderer onj = this_brick.GetComponent<MeshRenderer>();
+                    float emission = Mathf.PingPong( Time.time, 1.0f );
+                    Color finalColor = newColor * Mathf.LinearToGammaSpace( emission );
+                    onj.material.color = finalColor;
+                     */
+
+                    NetworkServer.Spawn( this_brick );
+                }
+            }
+        }
+    }
+
+    [ClientRpc]
+    void RpcUpdateBrick( GameObject go, Color new_color)
+    {
+        go.GetComponent<MeshRenderer>().material.color = new_color;
+    }
+
+    void UpdateBricks()
     {
         timer += Time.deltaTime;
-        if (timer >= 0.2f)
+        if( timer >= 0.2f )
         {
-            for (int i =0; i < transform.childCount; i++)
+            for( int i = 0; i < transform.childCount; i++ )
             {
-                Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
-                float emission = Mathf.PingPong(Time.time, 1.5f);
-                Color finalColor = newColor * Mathf.LinearToGammaSpace(emission);
-                transform.GetChild(i).GetComponent<MeshRenderer>().material.color = finalColor;
+                Color newColor = new Color( Random.value, Random.value, Random.value, 1.0f );
+                float emission = Mathf.PingPong( Time.time, 1.5f );
+                Color finalColor = newColor * Mathf.LinearToGammaSpace( emission );
+                //transform.GetChild( i ).GetComponent<MeshRenderer>().material.color = finalColor;
+                RpcUpdateBrick( transform.GetChild( i ).gameObject, finalColor );
             }
             timer = 0;
         }
-	}
+    }
 }
