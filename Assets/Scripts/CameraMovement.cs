@@ -27,46 +27,46 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float hor_move = -Input.GetAxis( "Mouse X" );
-        float vert_move = -Input.GetAxis( "Mouse Y" );
+        float hor_move = -Input.GetAxis("Mouse X");
+        float vert_move = -Input.GetAxis("Mouse Y");
 
         //RMB is pressed
-        if( Input.GetMouseButton( 1 ) )
+        if (Input.GetMouseButton(1))
         {
             float other_than_y_diff = vert_move * rotation_speed * Time.deltaTime;
             float y_diff = -hor_move * rotation_speed * Time.deltaTime;
             
-            if( y_value + y_diff >= max_y_angle )
+            if (y_value + y_diff >= max_y_angle)
                 y_diff = max_y_angle - y_value;
-            if( y_value + y_diff <= -max_y_angle )
+            if (y_value + y_diff <= -max_y_angle)
                 y_diff = -max_y_angle - y_value;
 
-            if( other_than_y_value + other_than_y_diff > max_other_than_y_angle )
+            if (other_than_y_value + other_than_y_diff > max_other_than_y_angle)
                 other_than_y_diff = max_other_than_y_angle - other_than_y_value;
-            if( other_than_y_value + other_than_y_diff < min_other_than_y_angle )
+            if (other_than_y_value + other_than_y_diff < min_other_than_y_angle)
                 other_than_y_diff = min_other_than_y_angle - other_than_y_value;
 
-            transform.Rotate( 0, 0, other_than_y_diff, Space.Self );
-            transform.Rotate( Vector3.up, y_diff, Space.World );
+            transform.Rotate(0, 0, other_than_y_diff, Space.Self);
+            transform.Rotate(Vector3.up, y_diff, Space.World);
             y_value += y_diff;
             other_than_y_value += other_than_y_diff;
         }
 
-        if( Input.mouseScrollDelta.y != 0 )
+        if (Input.mouseScrollDelta.y != 0)
         {
-            if( Input.mouseScrollDelta.y < 0 )
+            if (Input.mouseScrollDelta.y < 0)
             {
-                if( zoom_scale < max_zoom_scale )
+                if (zoom_scale < max_zoom_scale)
                 {
                     zoom_scale *= zoom_factor;
                 }
             }
             else
-                if( zoom_scale > 0.1f )
+                if (zoom_scale > 0.1f)
                 {
                     zoom_scale /= zoom_factor;
                 }
-            transform.localScale = new Vector3( zoom_scale, 1, 1 );
+            transform.localScale = new Vector3(zoom_scale, 1, 1);
         }
     }
 }

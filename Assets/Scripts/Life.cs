@@ -12,7 +12,7 @@ public class Life : NetworkBehaviour
     public Texture heart;
 
     [SyncVar]
-    int levels_won = 0;
+    public int levels_won = 0;
 
     [SyncVar]
     public int currentLives = maxLives;
@@ -97,7 +97,7 @@ public class Life : NetworkBehaviour
         GUI.Label(new Rect(10, gui_first_row_x + gui_row_height * 2 - 10, Screen.width, heart.height), levels_won + " levels won", left_align_style);
         if (theOtherPlayer != null)
         {
-            GUI.Label(new Rect(0, gui_first_row_x + gui_row_height * 2, Screen.width, heart.height), theOtherPlayer.GetComponent<Life>().levels_won + " levels won", right_align_style);
+            GUI.Label(new Rect(-10, gui_first_row_x + gui_row_height * 2 - 10, Screen.width, heart.height), theOtherPlayer.GetComponent<Life>().levels_won + " levels won", right_align_style);
         }
 
         if (currentLives != 0 && other_player_lives != 0)
@@ -117,15 +117,15 @@ public class Life : NetworkBehaviour
         {
             if (other_player_lives == 0)
             {
-                GUI.Label(new Rect(10, gui_first_row_x + gui_row_height, Screen.width, heart.height), "You won!", left_align_style);
-                GUI.Label(new Rect(-10, gui_first_row_x + gui_row_height, Screen.width, heart.height), "You lost!", right_align_style);
+                GUI.Label(new Rect(10, gui_first_row_x + gui_row_height - 3, Screen.width, heart.height), "You won!", left_align_style);
+                GUI.Label(new Rect(-10, gui_first_row_x + gui_row_height - 3, Screen.width, heart.height), "You lost!", right_align_style);
             }
             else
             {
                 if (currentLives == 0)
                 {
-                    GUI.Label(new Rect(10, gui_first_row_x + gui_row_height, Screen.width, heart.height), "You lost!", left_align_style);
-                    GUI.Label(new Rect(-10, gui_first_row_x + gui_row_height, Screen.width, heart.height), "You won!", right_align_style);
+                    GUI.Label(new Rect(10, gui_first_row_x + gui_row_height - 3, Screen.width, heart.height), "You lost!", left_align_style);
+                    GUI.Label(new Rect(-10, gui_first_row_x + gui_row_height - 3, Screen.width, heart.height), "You won!", right_align_style);
                 }
             }
         }

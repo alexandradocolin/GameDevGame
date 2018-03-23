@@ -28,6 +28,10 @@ GameObject:
   - component: {fileID: 114407373888982482}
   - component: {fileID: 114340525909872472}
   - component: {fileID: 114764217754082028}
+  - component: {fileID: 111019869663143646}
+  - component: {fileID: 95949163570277624}
+  - component: {fileID: 320020809048825750}
+  - component: {fileID: 114028028184067254}
   m_Layer: 0
   m_Name: PlayerBoard
   m_TagString: Untagged
@@ -57,7 +61,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -127,6 +130,49 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 15, z: 15.000001}
   m_Center: {x: 6, y: 7.5, z: 0}
+--- !u!95 &95949163570277624
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773860324289016}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!111 &111019869663143646
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773860324289016}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 74651774309909524, guid: 03649828d6e5e64418a953a21dfecbb0,
+    type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 1
+--- !u!114 &114028028184067254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773860324289016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b245eb409e307442a38a93ea15b186a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114340525909872472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,4 +253,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heart: {fileID: 2800000, guid: c6b11a20b7db5b84cba95497113129b2, type: 3}
-  other_player_lives: 0
+  levels_won: 0
+  currentLives: 5
+--- !u!320 &320020809048825750
+PlayableDirector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773860324289016}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 03649828d6e5e64418a953a21dfecbb0, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 114547228863805434, guid: 03649828d6e5e64418a953a21dfecbb0, type: 2}
+    value: {fileID: 1773860324289016}
+  m_ExposedReferences:
+    m_References: []

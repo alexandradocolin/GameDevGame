@@ -20,34 +20,34 @@ public class BrickCollision : NetworkBehaviour
 
     }
 
-    void OnCollisionEnter( Collision other )
+    void OnCollisionEnter(Collision other)
     {
         //Destroy cube only if the ball has touched it
-        //if( other.collider.gameObject.CompareTag( permitted_collider_tag ) )
+        //if (other.collider.gameObject.CompareTag(permitted_collider_tag))
         {
             try
             {
-                if( transform.position.z > 0 )
+                if (transform.position.z > 0)
                 {
                     //player 1
                     //player1.life.LoseLife
-                    GameObject player = GameObject.Find( "Player 1" );
+                    GameObject player = GameObject.Find("Player 1");
                     player.GetComponent<Life>().LoseLife();
                 }
                 else
                 {
                     //player 2
                     //player2.life.LoseLife
-                    GameObject player = GameObject.Find( "Player 2" );
+                    GameObject player = GameObject.Find("Player 2");
                     player.GetComponent<Life>().LoseLife();
                 }
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
-                Debug.LogError( ex.Message );
+                Debug.LogError(ex.Message);
             }
             //Instantiate(transform, transform.position, Quaternion.identity);
-            Destroy( gameObject );
+            Destroy(gameObject);
         }
     }
 

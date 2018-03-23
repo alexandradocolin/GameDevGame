@@ -26,27 +26,27 @@ public class PlayerMovement : NetworkBehaviour {
     public override void OnStartLocalPlayer()
     {
         GetComponent<MeshRenderer>().material.color = Color.blue;
-        GameObject go = Instantiate( cameraPrefab, new Vector3( -20, 6, 0 ), Quaternion.Euler( 0, 0, 20 ) ) as GameObject;
-        go.transform.SetParent( this.transform, false );
+        GameObject go = Instantiate(cameraPrefab, new Vector3(-20, 6, 0), Quaternion.Euler(0, 0, 20)) as GameObject;
+        go.transform.SetParent(this.transform, false);
     }
     
     void Update ()
     {
-        if( !isLocalPlayer )
+        if (!isLocalPlayer)
         {
             return;
         }
-        if( !Input.GetMouseButton( 1 ) )
+        if (!Input.GetMouseButton(1))
         {
-            transform.Rotate( new Vector3( 0, Input.GetAxis( "Mouse X" ), 0 ) * Time.deltaTime * rotation_coef );
+            transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * Time.deltaTime * rotation_coef);
         }
         //transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")) * Time.deltaTime * 20f);
-        Vector3 v3 = transform.InverseTransformDirection( rb.velocity );
+        Vector3 v3 = transform.InverseTransformDirection(rb.velocity);
         //Vector3 v3 = rb.velocity;
-        v3.x = -Input.GetAxis( "Vertical" ) * Time.deltaTime * move_coef;
-        v3.z = Input.GetAxis( "Horizontal" ) * Time.deltaTime * move_coef;
+        v3.x = -Input.GetAxis("Vertical") * Time.deltaTime * move_coef;
+        v3.z = Input.GetAxis("Horizontal") * Time.deltaTime * move_coef;
         //rb.velocity.x = Input.GetAxis("Horizontal") * Time.deltaTime * 20;
-        rb.velocity = transform.TransformDirection( v3 );
+        rb.velocity = transform.TransformDirection(v3);
         //Debug.Log(rb.velocity.z + "pressed");
     }
 }
