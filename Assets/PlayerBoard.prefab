@@ -31,7 +31,6 @@ GameObject:
   - component: {fileID: 111019869663143646}
   - component: {fileID: 95949163570277624}
   - component: {fileID: 320020809048825750}
-  - component: {fileID: 114028028184067254}
   m_Layer: 0
   m_Name: PlayerBoard
   m_TagString: Untagged
@@ -163,17 +162,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114028028184067254
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1773860324289016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b245eb409e307442a38a93ea15b186a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114340525909872472
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -44,8 +44,8 @@ public class ChangeScene1 : MonoBehaviour
         total_wins += player1.GetComponent<Life>().levels_won;
         total_wins += player2.GetComponent<Life>().levels_won;
         Debug.Log(total_wins);
-        //Scene scene = SceneManager.GetActiveScene();
-        if (total_wins == 3)
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name.Equals("Level3"))
         {
             Animation anim;
             Debug.Log("if");
@@ -53,7 +53,7 @@ public class ChangeScene1 : MonoBehaviour
                 anim = player1.GetComponent<Animation>();
             else
                 anim = player2.GetComponent<Animation>();
-            //anim.Play("Recorded");
+            anim.Play("Recorded");
             return;
         }
         else
