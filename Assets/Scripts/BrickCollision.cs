@@ -23,6 +23,11 @@ public class BrickCollision : NetworkBehaviour
     void OnCollisionEnter(Collision other)
     {
         //Destroy cube only if the ball has touched it
+        if( !isServer )
+        {
+            return;
+        }
+
         //if (other.collider.gameObject.CompareTag(permitted_collider_tag))
         {
             try

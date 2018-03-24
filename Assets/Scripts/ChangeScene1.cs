@@ -38,22 +38,22 @@ public class ChangeScene1 : MonoBehaviour
 
     void WinnerDance()
     {
-        GameObject player1 = GameObject.Find("Player 1");
-        GameObject player2 = GameObject.Find("Player 2");
+        GameObject player1 = GameObject.Find( "Player 1" );
+        GameObject player2 = GameObject.Find( "Player 2" );
         int total_wins = 0;
-        total_wins += player1.GetComponent<Life>().levels_won;
-        total_wins += player2.GetComponent<Life>().levels_won;
+        total_wins += player1 != null ? player1.GetComponent<Life>().get_levels_won() : 0;
+        total_wins += player2 != null ? player2.GetComponent<Life>().get_levels_won() : 0;
         Debug.Log(total_wins);
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name.Equals("Level3"))
         {
             Animation anim;
             Debug.Log("if");
-            if (player1.GetComponent<Life>().levels_won >= player2.GetComponent<Life>().levels_won)
+            if( player1.GetComponent<Life>().get_levels_won() >= player2.GetComponent<Life>().get_levels_won() )
                 anim = player1.GetComponent<Animation>();
             else
                 anim = player2.GetComponent<Animation>();
-            anim.Play("Recorded");
+            anim.Play( "Recorded" );
             return;
         }
         else
