@@ -45,7 +45,7 @@ public class ChangeScene1 : MonoBehaviour
         total_wins += player2 != null ? player2.GetComponent<Life>().get_levels_won() : 0;
         Debug.Log(total_wins);
         Scene scene = SceneManager.GetActiveScene();
-        if (scene.name.Equals("Level3"))
+        if( total_wins == 3 )
         {
             Animation anim;
             Debug.Log("if");
