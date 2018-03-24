@@ -157,11 +157,12 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 74651774309909524, guid: 03649828d6e5e64418a953a21dfecbb0,
     type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 74651774309909524, guid: 03649828d6e5e64418a953a21dfecbb0, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
-  m_CullingType: 1
+  m_CullingType: 0
 --- !u!114 &114028028184067254
 MonoBehaviour:
   m_ObjectHideFlags: 1

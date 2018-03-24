@@ -40,7 +40,6 @@ public class ChangeScene1 : MonoBehaviour
     {
         GameObject player1 = GameObject.Find("Player 1");
         GameObject player2 = GameObject.Find("Player 2");
-        Animation anim = new Animation();
         int total_wins = 0;
         total_wins += player1.GetComponent<Life>().levels_won;
         total_wins += player2.GetComponent<Life>().levels_won;
@@ -48,15 +47,18 @@ public class ChangeScene1 : MonoBehaviour
         //Scene scene = SceneManager.GetActiveScene();
         if (total_wins == 3)
         {
+            Animation anim;
+            Debug.Log("if");
             if (player1.GetComponent<Life>().levels_won >= player2.GetComponent<Life>().levels_won)
                 anim = player1.GetComponent<Animation>();
             else
                 anim = player2.GetComponent<Animation>();
-            anim.Play("Recorded");
+            //anim.Play("Recorded");
             return;
         }
         else
         {
+            Debug.Log("else");
             ChangeScreen();
             return;
         }

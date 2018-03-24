@@ -30,7 +30,7 @@ public class PlayerMovement : NetworkBehaviour {
         go.transform.SetParent(this.transform, false);
     }
     
-    void Update ()
+    void FixedUpdate ()
     {
         if (!isLocalPlayer)
         {
@@ -40,6 +40,14 @@ public class PlayerMovement : NetworkBehaviour {
         {
             transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * Time.deltaTime * rotation_coef);
         }
+        /*Vector3 pos = rb.position;
+        int minX = 0, maxX = 0, minY = 0, maxY = 0, minZ = 0, maxZ = 0;
+        if (rb.name == "Player 1") { minX = -300; maxX = 300; minY = -300; maxY = 300; minZ = 0; maxZ = 300; }
+        else { minX = -300; maxX = 300; minY = -300; maxY = 300; minZ = 0; maxZ = -300; }
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
+        rb.position = pos;*/
         //transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")) * Time.deltaTime * 20f);
         Vector3 v3 = transform.InverseTransformDirection(rb.velocity);
         //Vector3 v3 = rb.velocity;
