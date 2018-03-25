@@ -13,14 +13,40 @@ public class PlayerMovement : NetworkBehaviour {
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.TransformDirection(Vector3.zero);
         rb.angularVelocity = Vector3.zero;
-        if (GameObject.Find("Player 1"))
+
+        StaticVariables statVars = GameObject.Find( "StaticVariables" ).GetComponent<StaticVariables>();
+        if( statVars == null || string.IsNullOrEmpty( statVars.thisPlayerName ) )
         {
-            transform.gameObject.name = "Player 2";
+            if( GameObject.Find( "Player 1" ) )
+            {
+                transform.gameObject.name = "Player 2";
+                if( isLocalPlayer )
+                {
+                    statVars.thisPlayerName = transform.gameObject.name;
+                }
+                
+            }
+            else
+            {
+                transform.gameObject.name = "Player 1";
+                if( isLocalPlayer )
+                {
+                    statVars.thisPlayerName = transform.gameObject.name;
+                }
+            }
         }
         else
         {
-            transform.gameObject.name = "Player 1";
+            if( isLocalPlayer )
+            {
+                transform.gameObject.name = statVars.thisPlayerName;
+            }
+            else
+            {
+                transform.gameObject.name = statVars.thisPlayerName.Equals( "Player 1" ) ? "Player 2" : "Player 1";
+            }
         }
+        
     }
 
     public override void OnStartLocalPlayer()

@@ -32,7 +32,8 @@ public class BrickCollision : NetworkBehaviour
         {
             try
             {
-                if (transform.position.z < 0)
+                //if (transform.position.z < 0)
+                if( transform.position.z * GameObject.Find( "Player 1" ).GetComponent<Transform>().position.z >= 0)
                 {
                     //player 1
                     //player1.life.LoseLife

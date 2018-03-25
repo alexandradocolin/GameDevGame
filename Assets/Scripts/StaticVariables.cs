@@ -12,6 +12,8 @@ public class StaticVariables : NetworkBehaviour
     [SyncVar]
     public int player2_wins = 0;
 
+    public string thisPlayerName = "";
+
 	// Use this for initialization
 	void Start () {
 		
